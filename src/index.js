@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else if (savedPage === "contact") {
     navigateTo("contact", displayContact);
   } else {
-    navigateTo("home", displayHome);
+    navigateTo("logo-link", displayHome);
   }
 });
 
