@@ -2,37 +2,74 @@ import "./style.css";
 import { displayHome } from "./home.js";
 import { displayMenu } from "./menu.js";
 import { displayReservations } from "./reservation.js";
-
-const homeBtn = document.getElementById("home");
-const menuBtn = document.getElementById("menu");
-const reserveBtn = document.getElementById("reserve");
-const storyBtn = document.getElementById("story");
-const contactBtn = document.getElementById("contact");
+import { displayStory } from "./story.js";
+import { displayContact } from "./contact.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Grab the buttons
   const homeBtn = document.getElementById("home");
   const menuBtn = document.getElementById("menu");
   const reserveBtn = document.getElementById("reserve");
   const storyBtn = document.getElementById("story");
   const contactBtn = document.getElementById("contact");
 
-  // 2. Load the home page by default
-  displayHome();
-
-  // 3. Attach event listeners (with safety checks so it doesn't crash if a button is missing)
-  if (homeBtn) {
-    homeBtn.addEventListener("click", displayHome);
+  // Function to handle Active State
+  function setActiveButton(activeId) {
+    document.querySelectorAll("nav ul li button").forEach((btn) => {
+      btn.classList.remove("active");
+    });
+    const activeBtn = document.getElementById(activeId);
+    if (activeBtn) activeBtn.classList.add("active");
   }
 
-  if (menuBtn) {
-    menuBtn.addEventListener("click", displayMenu);
+  // Helper function to navigate AND save the state
+  function navigateTo(pageId, displayFunction) {
+    displayFunction();
+    setActiveButton(pageId);
+
+    sessionStorage.setItem("currentPage", pageId);
   }
 
-  if (reserveBtn) reserveBtn.addEventListener("click", displayReservations);
+  //  Attach Listeners using the new helper
+  homeBtn.addEventListener("click", () => navigateTo("home", displayHome));
+  menuBtn.addEventListener("click", () => navigateTo("menu", displayMenu));
+  reserveBtn.addEventListener("click", () =>
+    navigateTo("reserve", displayReservations),
+  );
+  storyBtn.addEventListener("click", () => navigateTo("story", displayStory));
+  contactBtn.addEventListener("click", () =>
+    navigateTo("contact", displayContact),
+  );
 
-  // As you build the other pages, just add them here:
-  // if (reserveBtn) reserveBtn.addEventListener("click", displayReserve);
-  // if (storyBtn) storyBtn.addEventListener("click", displayStory);
-  // if (contactBtn) contactBtn.addEventListener("click", displayContact);
+  //  Check for a saved page on load
+  const savedPage = sessionStorage.getItem("currentPage");
+
+  if (savedPage === "menu") {
+    navigateTo("menu", displayMenu);
+  } else if (savedPage === "reserve") {
+    navigateTo("reserve", displayReservations);
+  } else if (savedPage === "story") {
+    navigateTo("story", displayStory);
+  } else if (savedPage === "contact") {
+    navigateTo("contact", displayContact);
+  } else {
+    navigateTo("home", displayHome);
+  }
 });
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+      }
+    });
+  },
+  { threshold: 0.15 },
+);
+
+window.initRevealAnimations = function () {
+  document.querySelectorAll(".reveal").forEach((el) => {
+    el.classList.remove("active");
+    revealObserver.observe(el);
+  });
+};
