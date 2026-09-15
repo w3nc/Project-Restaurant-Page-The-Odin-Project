@@ -1,4 +1,4 @@
-import reserveBg from "./images/reserve-bg.jpg"
+import reserveBg from "./images/reserve-bg.jpg";
 
 export function displayReservations() {
   const content = document.getElementById("content");
@@ -10,7 +10,7 @@ export function displayReservations() {
   hero.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("${reserveBg}")`;
 
   hero.innerHTML = `
-    <h1 class="res-title">RESERVATIONS</h1>
+    <h1 class="res-title reveal">RESERVATIONS</h1>
   `;
 
   const mainContainer = document.createElement("section");
@@ -20,7 +20,7 @@ export function displayReservations() {
     <div class="res-layout">
       
       
-      <div class="res-form-card">
+      <div class="res-form-card reveal">
         <form class="booking-form" onsubmit="event.preventDefault(); alert('Table reserved! Gus Fring approves.');">
           <input type="text" placeholder="Name" required>
           <input type="email" placeholder="Email" required>
@@ -47,7 +47,7 @@ export function displayReservations() {
       </div>
 
       
-      <div class="res-sidebar">
+      <div class="res-sidebar reveal">
         <div class="info-card">
           <h3>Phone:</h3>
           <p>(505) 555-0199</p>
@@ -66,4 +66,16 @@ export function displayReservations() {
   `;
 
   content.append(hero, mainContainer);
+
+  window.addEventListener("scroll", () => {
+    const header = document.querySelector("header");
+
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  });
+
+  initRevealAnimations();
 }
