@@ -6,11 +6,18 @@ import { displayStory } from "./story.js";
 import { displayContact } from "./contact.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const homeBtn = document.getElementById("home");
   const menuBtn = document.getElementById("menu");
   const reserveBtn = document.getElementById("reserve");
   const storyBtn = document.getElementById("story");
   const contactBtn = document.getElementById("contact");
+
+  const logoLink = document.getElementById("logo-link");
+  if (logoLink) {
+    logoLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      navigateTo("home", displayHome);
+    });
+  }
 
   // Function to handle Active State
   function setActiveButton(activeId) {
@@ -30,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   //  Attach Listeners using the new helper
-  homeBtn.addEventListener("click", () => navigateTo("home", displayHome));
+
   menuBtn.addEventListener("click", () => navigateTo("menu", displayMenu));
   reserveBtn.addEventListener("click", () =>
     navigateTo("reserve", displayReservations),
