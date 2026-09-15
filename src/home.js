@@ -5,7 +5,7 @@ export function displayHome() {
 
   // hero section
   const hero = document.createElement("section");
-  hero.className = "hero-section";
+  hero.className = "hero-section reveal";
   const heroTitle = document.createElement("h1");
   heroTitle.className = "hero-title";
   heroTitle.textContent = "LOS POLLOS HERMANOS";
@@ -22,7 +22,7 @@ export function displayHome() {
 
   //   cards
   const cards = document.createElement("section");
-  cards.className = "cards-section";
+  cards.className = "cards-section reveal";
 
   const cardsData = [
     {
@@ -62,4 +62,40 @@ export function displayHome() {
       header.classList.remove("scrolled");
     }
   });
+
+  initHomeButtons();
+  initRevealAnimations();
+}
+
+function initHomeButtons() {
+  
+  const reserveBtn = document.querySelector(".cta-button");
+  if (reserveBtn) {
+    reserveBtn.addEventListener("click", () => {
+     
+      document.getElementById("reserve").click();
+    });
+  }
+
+  // Feature Cards
+  const menuCard = document.querySelector(".card:nth-child(1)"); 
+  const diningCard = document.querySelector(".card:nth-child(2)");
+  const experienceCard = document.querySelector(".card:nth-child(3)"); 
+
+  if (menuCard)
+    menuCard.addEventListener("click", () =>
+      document.getElementById("menu").click(),
+    );
+
+  
+  if (diningCard)
+    diningCard.addEventListener("click", () =>
+      document.getElementById("reserve").click(),
+    );
+
+  
+  if (experienceCard)
+    experienceCard.addEventListener("click", () =>
+      document.getElementById("story").click(),
+    );
 }
