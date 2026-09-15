@@ -73,6 +73,9 @@ nav ul {
   list-style-type: none;
 }
 
+
+
+
 .nav-btn {
   background: none;
   border: none;
@@ -120,6 +123,36 @@ nav ul {
   cursor: pointer;
 }
 
+nav ul li button.active {
+  color: #FFD700; /* Bright Yellow */
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); 
+  position: relative;
+}
+
+nav ul li button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 3px;
+  background-color: #FFD700;
+  border-radius: 2px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); 
+}
+
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .logo-row-1,
 .logo-row-2 {
   color: #ffd700;
@@ -165,7 +198,7 @@ nav ul {
 
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-    url("./images/lph-background-cover.jpg");
+    url("./images/los-pollos-hermanos2.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -378,8 +411,8 @@ footer {
 .menu-hero {
   background-image:
     linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 58, 138, 0.85)),
-    url("./images/pollos-menu.jpg"); /* Spices background */
-  background-size: cover;
+    url("./images/lph-inside.jpeg"); /* Spices background */
+  background-size: contain;
   background-position: center;
   padding: 120px 20px 60px; /* Extra top padding for fixed header */
   text-align: center;
@@ -523,10 +556,9 @@ footer {
   line-height: 1.5;
 }
 
-
 /*  Reservations Hero  */
 .res-hero {
-  height: 300px; 
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -535,38 +567,38 @@ footer {
 }
 
 .res-title {
-  font-family: 'Ji Burrito', cursive;
+  font-family: "Ji Burrito", cursive;
   font-size: 4.5rem;
-  color: #FFD700;
+  color: #ffd700;
   margin: 0;
-  text-shadow: 
-    -3px -3px 0 #C41E3A, 3px -3px 0 #C41E3A, 
-    -3px 3px 0 #C41E3A, 3px 3px 0 #C41E3A;
+  text-shadow:
+    -3px -3px 0 #c41e3a,
+    3px -3px 0 #c41e3a,
+    -3px 3px 0 #c41e3a,
+    3px 3px 0 #c41e3a;
 }
 
 /*  Main Container  */
 .res-container {
-  background-color: #F5E6D3;
+  background-color: #f5e6d3;
   padding: 60px 20px;
   min-height: 600px;
 }
-
 
 .res-layout {
   max-width: 1000px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.5fr 1fr; 
+  grid-template-columns: 1.5fr 1fr;
   gap: 40px;
   align-items: start;
 }
 
-
 .res-form-card {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
 .booking-form {
@@ -582,9 +614,9 @@ footer {
   padding: 12px 15px;
   border: 1px solid #ddd;
   border-radius: 6px;
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 1rem;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   transition: border-color 0.3s;
 }
 
@@ -592,9 +624,8 @@ footer {
 .booking-form select:focus,
 .booking-form textarea:focus {
   outline: none;
-  border-color: #1E3A8A; 
+  border-color: #1e3a8a;
 }
-
 
 .form-row {
   display: grid;
@@ -604,15 +635,17 @@ footer {
 
 /* Submit Button */
 .submit-btn {
-  background-color: #C41E3A; 
-  color: #FFD700;
+  background-color: #c41e3a;
+  color: #ffd700;
   border: none;
   padding: 15px;
-  font-family: 'Ji Burrito', cursive;
+  font-family: "Ji Burrito", cursive;
   font-size: 1.3rem;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  transition:
+    background-color 0.3s,
+    transform 0.2s;
   margin-top: 10px;
 }
 
@@ -629,33 +662,359 @@ footer {
 }
 
 .info-card {
-  background-color: #1E3A8A; 
-  color: #FFFFFF;
+  background-color: #1e3a8a;
+  color: #ffffff;
   padding: 25px;
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(30, 58, 138, 0.2);
 }
 
 .info-card h3 {
-  font-family: 'Ji Burrito', cursive;
-  color: #FFD700; 
+  font-family: "Ji Burrito", cursive;
+  color: #ffd700;
   margin: 0 0 8px 0;
   font-size: 1.4rem;
 }
 
 .info-card p {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   margin: 0;
   font-size: 1.1rem;
 }
 
-
 @media (max-width: 768px) {
   .res-layout {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
   }
-  
+
   .res-title {
     font-size: 3rem;
+  }
+}
+
+
+/*  Story Hero Section  */
+.story-hero {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.story-title {
+  font-family: 'Ji Burrito', cursive;
+  font-size: 4.5rem;
+  color: #FFD700;
+  margin: 0 0 15px;
+  text-shadow: 
+    -3px -3px 0 #C41E3A, 3px -3px 0 #C41E3A, 
+    -3px 3px 0 #C41E3A, 3px 3px 0 #C41E3A;
+}
+
+.story-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.5rem;
+  color: #F5E6D3;
+  margin: 0;
+}
+
+
+.story-narrative {
+  background-color: #F5E6D3;
+  padding: 80px 20px;
+}
+
+.narrative-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.story-text {
+  padding-right: 20px;
+}
+
+.section-heading {
+  font-family: 'Ji Burrito', cursive;
+  color: #1E3A8A; /* Royal Blue */
+  font-size: 2.2rem;
+  margin: 0 0 25px;
+  position: relative;
+}
+
+.section-heading::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background-color: #C41E3A;
+  margin-top: 10px;
+}
+
+.story-text p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #2D2D2D;
+  margin-bottom: 20px;
+}
+
+.story-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  border: 4px solid #FFFFFF;
+}
+
+
+.story-values {
+  background-color: #FFFFFF;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.values-heading {
+  font-family: 'Ji Burrito', cursive;
+  color: #1E3A8A;
+  font-size: 2.5rem;
+  margin: 0 0 50px;
+}
+
+.values-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.value-card {
+  background-color: #F5E6D3;
+  padding: 40px 30px;
+  border-radius: 12px;
+  border: 3px solid #1E3A8A;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(30, 58, 138, 0.2);
+  border-color: #C41E3A;
+}
+
+.value-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.value-title {
+  font-family: 'Ji Burrito', cursive;
+  color: #C41E3A;
+  font-size: 1.8rem;
+  margin: 0 0 15px;
+}
+
+.value-desc {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: #2D2D2D;
+  margin: 0;
+  line-height: 1.6;
+}
+
+
+@media (max-width: 768px) {
+  .narrative-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .story-text {
+    padding-right: 0;
+  }
+  
+  .story-title {
+    font-size: 3rem;
+  }
+  
+  .values-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/*  Contact Hero  */
+.contact-hero {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+}
+
+.contact-title {
+  font-family: 'Ji Burrito', cursive;
+  font-size: 4.5rem;
+  color: #FFD700;
+  margin: 0 0 10px;
+  text-shadow: 
+    -3px -3px 0 #C41E3A, 3px -3px 0 #C41E3A, 
+    -3px 3px 0 #C41E3A, 3px 3px 0 #C41E3A;
+}
+
+.contact-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.5rem;
+  color: #F5E6D3;
+  margin: 0;
+}
+
+
+.contact-container {
+  background-color: #F5E6D3;
+  padding: 60px 20px;
+  min-height: 600px;
+}
+
+
+.contact-layout {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr; 
+  gap: 50px;
+  align-items: start;
+}
+
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.info-block {
+  background-color: #FFFFFF;
+  padding: 25px;
+  border-radius: 12px;
+  border-left: 5px solid #C41E3A; 
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.info-block h3 {
+  font-family: 'Ji Burrito', cursive;
+  color: #1E3A8A; 
+  font-size: 1.4rem;
+  margin: 0 0 10px;
+}
+
+.info-block p {
+  font-family: 'Playfair Display', serif;
+  color: #2D2D2D;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+
+.map-container {
+  width: 100%;
+  height: 300px; 
+  border-radius: 12px;
+  overflow: hidden; 
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border: 2px solid #FFFFFF;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  display: block; 
+}
+
+
+.contact-form-card {
+  background-color: #FFFFFF;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.form-heading {
+  font-family: 'Ji Burrito', cursive;
+  color: #1E3A8A;
+  font-size: 2rem;
+  margin: 0 0 25px;
+  text-align: center;
+}
+
+.message-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.message-form input,
+.message-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.message-form input:focus,
+.message-form textarea:focus {
+  outline: none;
+  border-color: #1E3A8A;
+}
+
+
+.send-btn {
+  background-color: #C41E3A;
+  color: #FFD700;
+  border: none;
+  padding: 15px;
+  font-family: 'Ji Burrito', cursive;
+  font-size: 1.3rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 10px;
+}
+
+.send-btn:hover {
+  background-color: #a01830;
+  transform: translateY(-2px);
+}
+
+
+@media (max-width: 768px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-title {
+    font-size: 3rem;
+  }
+  
+  .contact-form-card {
+    padding: 25px;
   }
 }
