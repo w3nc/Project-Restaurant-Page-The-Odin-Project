@@ -1,16 +1,18 @@
 import fringChicken from "./images/pollos-chicken.jpg";
 import fringWings from "./images/pollos-wings.jpg";
-import chickenTender from "./images/chicken-tender.jpg";
+
 import baconEgg from "./images/bacon-egg.jpg";
 import pollosDrink from "./images/pollos-drink.jpg";
 import saulCoffee from "./images/saul-coffee.jpg";
+import chickenTenders from "./images/chicken-tenders.jpg";
+import loadedNachos from "./images/loaded-nachos.jpg";
 
 export function displayMenu() {
   const content = document.getElementById("content");
   content.innerHTML = "";
 
   const hero = document.createElement("section");
-  hero.className = "menu-hero";
+  hero.className = "menu-hero reveal";
   hero.innerHTML = `
     <h1 class="menu-title">THE MENU</h1>
     <p class="menu-subtitle">Crafted with Precision. Served with Pride.</p>
@@ -35,7 +37,7 @@ export function displayMenu() {
         {
           name: "Nacho's Chicken Tenders",
           desc: "Served with a side of homemade ranch.",
-          image: chickenTender,
+          image: chickenTenders,
           price: "$18",
         },
       ],
@@ -53,8 +55,7 @@ export function displayMenu() {
           name: "Loaded Nachos",
           desc: "Jalapeños, queso, and slow-cooked brisket.",
           price: "$15",
-          image:
-            "https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?q=80&w=600&auto=format&fit=crop",
+          image: loadedNachos,
         },
         {
           name: "Spice Curls",
@@ -92,7 +93,7 @@ export function displayMenu() {
     categoryDiv.className = "menu-category";
 
     const catTitle = document.createElement("h2");
-    catTitle.className = "category-title";
+    catTitle.className = "category-title reveal";
     catTitle.textContent = cat.category;
     categoryDiv.appendChild(catTitle);
 
@@ -103,7 +104,7 @@ export function displayMenu() {
     // Build individual cards
     cat.items.forEach((item) => {
       const card = document.createElement("div");
-      card.className = "menu-card";
+      card.className = "menu-card reveal";
 
       card.innerHTML = `
         <div class="card-image">
@@ -121,11 +122,14 @@ export function displayMenu() {
       gridDiv.appendChild(card);
     });
 
+    
     categoryDiv.appendChild(gridDiv);
     menuContainer.appendChild(categoryDiv);
   });
 
   content.append(hero, menuContainer);
+
+
 
   window.addEventListener("scroll", () => {
     const header = document.querySelector("header");
@@ -136,4 +140,6 @@ export function displayMenu() {
       header.classList.remove("scrolled");
     }
   });
+
+    initRevealAnimations();
 }
