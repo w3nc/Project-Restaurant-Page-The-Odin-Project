@@ -1,5 +1,6 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -8,20 +9,45 @@ export default {
   entry: {
     app: "./src/index.js",
   },
-  experiments: {
-    html: true,
-  },
   output: {
     filename: "[name].bundle.js",
-    htmlFilename: "index.html",
     path: path.resolve(__dirname, "dist"),
     clean: true,
-    html: {
-      meta: {
-        charset: "UTF-8",
-        viewport: "width=device-width, initial-scale=1",
-      },
-      title: "Production",
-    },
   },
+  module: {
+    rules: [
+      // Handle images
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "images/[name][ext][query]",
+        },
+      },
+      // Handle fonts
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "fonts/[name][ext][query]",
+        },
+      },
+      // Handle CSS
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      // Handle HTML
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: "Production",
+      template: "./src/template.html",
+    }),
+  ],
 };
